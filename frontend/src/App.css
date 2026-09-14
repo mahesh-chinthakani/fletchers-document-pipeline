@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+}
+
+.page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  color: #172033;
+  padding: 64px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #56657a;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+h1 {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.15;
+}
+
+.subtitle {
+  max-width: 650px;
+  margin-top: 14px;
+  color: #667085;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e1e6ed;
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 14px rgba(20, 30, 50, 0.05);
+}
+
+.upload-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.file-label {
+  font-weight: 600;
+}
+
+input[type="file"] {
+  padding: 14px;
+  border: 1px dashed #aab5c3;
+  border-radius: 8px;
+  background: #fafbfc;
+}
+
+.selected-file {
+  margin: 0;
+  color: #475467;
+}
+
+button {
+  align-self: flex-start;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 20px;
+  background: #1f4f7a;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #173d60;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.details {
+  display: grid;
+  gap: 16px;
+}
+
+.details div {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
+}
+
+.details span {
+  color: #667085;
+}
+
+.status {
+  text-transform: capitalize;
+}
+
+.status.completed {
+  color: #147a42;
+}
+
+.status.processing {
+  color: #a15c00;
+}
+
+.status.failed {
+  color: #b42318;
+}
+
+.error {
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #fff2f0;
+  color: #b42318;
+  border: 1px solid #f6c7c2;
+}
+
+.chunks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chunk {
+  border: 1px solid #e1e6ed;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chunk-header {
+  background: #f7f9fb;
+  border-bottom: 1px solid #e1e6ed;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475467;
+}
+
+.chunk p {
+  margin: 0;
+  padding: 16px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 32px 16px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .details div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
