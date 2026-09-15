@@ -344,3 +344,30 @@ Cloud deployment
 ```
 
 The goal of the take-home implementation was to keep the core processing flow clear rather than introduce infrastructure that was not required to demonstrate the solution.
+
+
+## Further Questions
+
+### 1. What scalable production architecture would support this pipeline?
+
+For production, I would separate document upload from processing. The API would accept the document, store the original file in object storage, create a processing record in a production database such as PostgreSQL, and place a processing job onto a durable message queue.
+
+Independent workers could then process documents, perform extraction or OCR where required, store the extracted content, and update the document status. This would allow the API and document-processing workers to scale independently.
+
+I would also introduce retries, structured logging, monitoring, authentication, stronger file validation, and a production OCR provider.
+
+### 2. How would the design change to support plain-text files?
+
+I would add a `TextExtractor` implementing the existing `BaseExtractor` interface and register the `.txt` extension in the `ExtractorRegistry`.
+
+Because plain-text files do not require document parsing or OCR, the extractor could decode the uploaded bytes and return the content as one or more ordered chunks.
+
+The API, `DocumentProcessor`, persistence layer, and frontend would require little or no structural change.
+
+### 3. How would the design change if document uploads increased by 100x?
+
+I would move document processing out of FastAPI `BackgroundTasks` and use a durable queue with independently scalable worker processes.
+
+I would replace SQLite with PostgreSQL or another production database suitable for concurrent workloads, store original documents in object storage, and add retries, monitoring, rate controls, and stronger failure handling.
+
+The API and workers could then be scaled horizontally depending on upload and processing demand.
